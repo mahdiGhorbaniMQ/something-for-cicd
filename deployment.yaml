@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: something-for-cicd
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: something-for-cicd
+  template:
+    metadata:
+      labels:
+        app: something-for-cicd
+    spec:
+      containers:
+        - name: something-for-cicd
+          image: registry:5000/something-for-cicd
+          ports:
+            - containerPort: 80
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: something-for-cicd
+spec:
+  selector:
+    app: something-for-cicd
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: NodePort 
+
+
