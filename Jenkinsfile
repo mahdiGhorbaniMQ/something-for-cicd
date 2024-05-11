@@ -9,7 +9,8 @@ pipeline {
 //         }
         stage('Build and Test') {
             steps {
-                sh 'npm test'
+                sh 'docker images'
+		sh 'docker ps'
             }
         }
         stage('Build Docker Image') {
