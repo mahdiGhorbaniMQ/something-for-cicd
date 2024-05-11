@@ -18,13 +18,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-
-		    withCredentials([string(credentialsId: '10174d96-0ee4-454d-993a-aba3b32b0a66', variable: 'MINIKUBE_CONF')]) {
-                    	sh 'kubectl --kubeconfig=$MINIKUBE_CONF get pods -A'
-                    }
-//		    withKubeConfig([credentialsId: '10174d96-0ee4-454d-993a-aba3b32b0a66', serverUrl: 'https://minikube:8443']) {
-//			sh 'kubectl get pods -A'
-//		    }
+		    sh 'kubectl --kubeconfig /home/kubernetes get pods -A'
 //		    sh 'docker stop something-for-cicd'
 //		    sh 'docker rm something-for-cicd'
 //                  sh 'docker run -d -it --network cicd -p 9090:80 --name something-for-cicd something-for-cicd:latest'
