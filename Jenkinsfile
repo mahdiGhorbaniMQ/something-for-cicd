@@ -2,34 +2,26 @@ pipeline {
     agent any
 
     stages {
-//         stage('Checkout Code') {
-//             steps {
-//                 git branch: 'master', credentialsId: 'your-git-credentials-id', url: 'https://github.com/your-username/your-angular-repo.git'
-//             }
-//         }
-        stage('Build and Test') {
+        stage('Test') {
             steps {
-                sh 'docker images'
-		sh 'docker ps'
+//                sh 'docker run ng-test'
             }
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t something-for-cidcd:latest .'
+//		sh 'docker rmi something-for-cicd:latest'
+//                sh 'docker build -t something-for-cidcd:latest .'
             }
         }
-        stage('Push Image to Docker Registery') {
+        stage('Deploy') {
             steps {
                 script {
-                    sh 'docker tag something-for-cicd:latest registry:5000/something-for-cicd:latest'
-                    sh 'docker push registry:5000/something-for-cicd:latest'
-                }
-            }
-        }
-        stage('Deploy on Minikube') {
-            steps {
-                script {
-                    sh 'kubectl apply -f deployment.yml'
+		    withKubeConfig([credentialsId: '10174d96-0ee4-454d-993a-aba3b32b0a66', serverUrl: 'https://minikube:8443']) {
+			sh 'kubectl get pods -A'
+		    }
+//		    sh 'docker stop something-for-cicd'
+//		    sh 'docker rm something-for-cicd'
+//                    sh 'docker run -d -it --network cicd -p 9090:80 --name something-for-cicd something-for-cicd:latest'
                 }
             }
         }
