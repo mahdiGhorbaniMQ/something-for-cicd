@@ -28,7 +28,7 @@ pipeline {
         stage('Deploy on Minikube') {
             steps {
                 script {
-//                    sh 'kubectl apply -f deployment.yml'
+                    sh 'kubectl apply -f deployment.yml'
                 }
             }
         }
