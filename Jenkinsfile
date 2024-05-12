@@ -4,24 +4,28 @@ pipeline {
     stages {
         stage('Test') {
             steps {
-//                sh 'docker run ng-test'
+//                sh 'docker build -f test.Dockerfile .'
 		sh 'echo hello'
             }
         }
         stage('Build Docker Image') {
             steps {
-//		sh 'docker rmi something-for-cicd:latest'
-//                sh 'docker build -t something-for-cidcd:latest .'
-		sh 'echo hello2'
+                sh 'docker build -t something-for-cidcd:latest .'
             }
         }
-        stage('Deploy') {
+	stage('Push Image to Docker Registery') {
             steps {
                 script {
-		    sh 'kubectl --kubeconfig /home/kubernetes get pods -A'
-//		    sh 'docker stop something-for-cicd'
-//		    sh 'docker rm something-for-cicd'
-//                  sh 'docker run -d -it --network cicd -p 9090:80 --name something-for-cicd something-for-cicd:latest'
+                    sh 'docker tag something-for-cicd:latest registry:5000/something-for-cicd:latest'
+                    sh 'docker push registry:5000/something-for-cicd:latest'
+                }
+            }
+        }
+        stage('Deploy on Kubernetes') {
+            steps {
+                script {
+		    sh 'kubectl --kubeconfig /home/kubernetes delete -f deployment.yml'
+		    sh 'kubectl --kubeconfig /home/kubernetes apply -f deployment.yml'
                 }
             }
         }

@@ -17,19 +17,6 @@ spec:
           image: registry:5000/something-for-cicd
           ports:
             - containerPort: 80
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: something-for-cicd
-spec:
-  selector:
-    app: something-for-cicd
-  ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 80
-  type: NodePort 
+ 
 
 
