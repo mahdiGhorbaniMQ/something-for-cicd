@@ -16,8 +16,8 @@ pipeline {
 	stage('Push Image to Docker Registery') {
             steps {
                 script {
-                    sh 'docker tag something-for-cicd:latest registry:5000/something-for-cicd:latest'
-                    sh 'docker push registry:5000/something-for-cicd:latest'
+                    sh 'docker tag something-for-cicd:latest localhost:5000/something-for-cicd:latest'
+                    sh 'docker push localhost:5000/something-for-cicd:latest'
                 }
             }
         }
