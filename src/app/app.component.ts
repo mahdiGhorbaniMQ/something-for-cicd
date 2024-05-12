@@ -10,5 +10,5 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'something-for-cicd-2';
+  title = 'something-for-cicd new version';
 }
