@@ -10,7 +10,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t something-for-cidcd:latest .'
+                sh 'docker build -t something-for-cicd:latest .'
             }
         }
 	stage('Push Image to Docker Registery') {
