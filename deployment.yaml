@@ -17,6 +17,7 @@ spec:
           image: registry:5000/something-for-cicd
           ports:
             - containerPort: 80
+          imagePullPolicy: Always    
  
 
 

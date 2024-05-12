@@ -24,7 +24,6 @@ pipeline {
         stage('Deploy on Kubernetes') {
             steps {
                 script {
-		    sh 'kubectl --kubeconfig /home/kubernetes delete -f deployment.yaml'
 		    sh 'kubectl --kubeconfig /home/kubernetes apply -f deployment.yaml'
                 }
             }
