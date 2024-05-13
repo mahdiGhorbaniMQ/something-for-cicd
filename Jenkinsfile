@@ -10,6 +10,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
+		sh 'docker rmi something-for-cicd:latest'
                 sh 'docker build -t something-for-cicd:latest .'
             }
         }
