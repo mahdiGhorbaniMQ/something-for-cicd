@@ -17,9 +17,9 @@ export class AppComponent {
       title: "Congratulations! This is first version. 🎉",
       creator: "Mahdi Ghorbani"
     },
-//    {
-//      title: "And this is another version with another title.",
-//      creator: "Another User"
-//    }
+    {
+      title: "And this is another version with another title.",
+      creator: "Another User"
+    }
   ]
 }
