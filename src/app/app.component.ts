@@ -10,5 +10,12 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'something-for-cicd new version';
+  title = 'Ci/Cd';
+
+  data = [
+    {
+      title: "Congratulations! This is first version. 🎉",
+      creator: "Mahdi Ghorbani"
+    },
+  ]
 }
